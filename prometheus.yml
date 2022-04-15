@@ -10,7 +10,7 @@ global:
 # Here it's Prometheus itself.
 scrape_configs:
   # Linux
-  - job_name: node
+  - job_name: server
     static_configs:
       - targets: ['localhost:9100']
   # Prometheus
@@ -21,12 +21,19 @@ scrape_configs:
     static_configs:
       - targets: ['localhost:9090']
   # Nginx
-  - job_name: 'nginx-1'
+  - job_name: 'nginx-test'
     # Override the global default and scrape targets from this job every 5 seconds.
     scrape_interval: 5s
     scrape_timeout: 5s
     static_configs:
-      - targets: ['host.docker.internal:8080']
-    metrics_path: /status
+      - targets: ['http-outpost-nginx-pipo-wordpress.4b63.pro-ap-southeast-2.openshiftapps.com']
+    metrics_path: /nginx-module-vts
     tls_config:
       insecure_skip_verify: false
+  # Node Discord
+  - job_name: 'node-discord'
+    scrape_interval: 5s
+    scrape_timeout: 5s
+    static_configs:
+      - targets: ['https://discord.outpost52.com.au']
+    metrics_path: /metrics
