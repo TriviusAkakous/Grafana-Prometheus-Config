@@ -10,7 +10,7 @@ global:
 # Here it's Prometheus itself.
 scrape_configs:
   # Linux
-  - job_name: server
+  - job_name: 'server'
     static_configs:
       - targets: ['localhost:9100']
   # Prometheus
@@ -35,5 +35,5 @@ scrape_configs:
     scrape_interval: 5s
     scrape_timeout: 5s
     static_configs:
-      - targets: ['https://discord.outpost52.com.au']
+      - targets: ['discord.outpost52.com.au']
     metrics_path: /metrics
